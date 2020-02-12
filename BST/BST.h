@@ -30,12 +30,12 @@ private:
 	{
 		string word;
 		int count = 1;
-		node* leftChild = NULL;
-		node* rightChild = NULL;
-		node* parent = NULL;
+		node* leftChild = nullptr;
+		node* rightChild = nullptr;
+		node* parent = nullptr;
 	};
 
-	node* root = NULL;
+	node* root = nullptr;
 
 	node* findNode(const string word);
 

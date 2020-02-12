@@ -2,12 +2,12 @@
 
 BST::BST()
 {
-	root = NULL;
+	root = nullptr;
 }
 
 BST::~BST()
 {
-	if (root != NULL)
+	if (root != nullptr)
 	{
 		deleteNode(root);
 	}
@@ -15,13 +15,13 @@ BST::~BST()
 
 void BST::deleteNode(node* node)
 {
-	//TODO: THIS SHIT ISN'T ALLOWED
-	if (node->leftChild != NULL)
+	//TODO: THIS ISN'T ALLOWED, MAKE SURE TO REDO
+	if (node->leftChild != nullptr)
 	{
 		deleteNode(node->leftChild);
 	}
 
-	if (node->rightChild != NULL)
+	if (node->rightChild != nullptr)
 	{
 		deleteNode(node->rightChild);
 	}
@@ -31,15 +31,15 @@ void BST::deleteNode(node* node)
 
 void BST::insert(const string word)
 {
-	// SEE IF THIS IS NECESSAR OR IF WE CAN USE == LATER TO DO A PROPER ATTACHMENT
+	// SEE IF THIS IS NECESSARY OR IF WE CAN USE == LATER TO DO A PROPER ATTACHMENT
 	BST::node* node = findNode(word);
 
-	if (node == NULL)
+	if (node == nullptr)
 	{
 		BST::node* p = root;
-		BST::node* q = NULL;
+		BST::node* q = nullptr;
 
-		while (p != NULL)
+		while (p != nullptr)
 		{
 			q = p;
 
@@ -57,11 +57,11 @@ void BST::insert(const string word)
 
 		newNode->word = word;
 		newNode->count = 1;
-		newNode->leftChild = NULL;
-		newNode->rightChild = NULL;
+		newNode->leftChild = nullptr;
+		newNode->rightChild = nullptr;
 		newNode->parent = q;
 
-		if (q == NULL)
+		if (q == nullptr)
 		{
 			root = newNode;
 		}
@@ -87,7 +87,7 @@ void BST::remove(const string word)
 {
 	BST::node* node = findNode(word);
 
-	if (node == NULL)
+	if (node == nullptr)
 	{
 		cout << word << " -1" << endl;
 
@@ -114,7 +114,7 @@ void BST::search(const string word)
 {
 	node* p = findNode(word);
 
-	if (p == NULL)
+	if (p == nullptr)
 	{
 
 		cout << word << " 0" << endl;
@@ -129,7 +129,7 @@ BST::node* BST::findNode(const string word)
 {
 	node* p = root;
 
-	while (p != NULL)
+	while (p != nullptr)
 	{
 		if (p->word == word)
 		{
@@ -145,14 +145,14 @@ BST::node* BST::findNode(const string word)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void BST::parent(const string word)
 {
 	node* p = findNode(word);
 
-	if (p == NULL)
+	if (p == nullptr)
 	{
 		cout << endl;
 	}
@@ -166,7 +166,7 @@ void BST::child(const string word)
 {
 	BST::node* p = findNode(word);
 
-	if (p == NULL)
+	if (p == nullptr)
 	{
 		cout << endl;
 	}
@@ -179,7 +179,7 @@ void BST::child(const string word)
 void BST::list()
 {
 	//TODO: Fix list formatting
-	if (root == NULL)
+	if (root == nullptr)
 	{
 		cout << "Set is empty" << endl;
 	}
@@ -197,14 +197,14 @@ void BST::list()
 
 void BST::list(int& index, node* node)
 {
-	if (node->leftChild != NULL)
+	if (node->leftChild != nullptr)
 	{
 		list(index, node->leftChild);
 	}
 
 	cout << "(" << ++index << ") " << node->word << " " << node->count << ", "; 
 
-	if (node->rightChild != NULL)
+	if (node->rightChild != nullptr)
 	{
 		list(index, node->rightChild);
 	}
@@ -217,19 +217,19 @@ void BST::min()
 
 void BST::min(node* p)
 {
-	if (p == NULL)
+	if (p == nullptr)
 	{
 		cout << endl;
 
 		return;
 	}
 
-	while (p->leftChild != NULL)
+	while (p->leftChild != nullptr)
 	{
 		p = p->leftChild;
 	}
 
-	if (p != NULL)
+	if (p != nullptr)
 	{
 		cout << p->word << endl;
 	}
@@ -242,19 +242,19 @@ void BST::max()
 
 void BST::max(node* p)
 {
-	if (p == NULL)
+	if (p == nullptr)
 	{
 		cout << endl;
 
 		return;
 	}
 
-	while (p->rightChild != NULL)
+	while (p->rightChild != nullptr)
 	{
 		p = p->rightChild;
 	}
 
-	if (p != NULL)
+	if (p != nullptr)
 	{
 		cout << p->word << endl;
 	}
@@ -262,7 +262,7 @@ void BST::max(node* p)
 
 void BST::prev(const string word)
 {
-	if (root == NULL)
+	if (root == nullptr)
 	{
 		cout << endl;
 
@@ -271,7 +271,7 @@ void BST::prev(const string word)
 
 	node* x = root;
 
-	if (x->leftChild != NULL)
+	if (x->leftChild != nullptr)
 	{
 		max(x->leftChild);
 
@@ -280,13 +280,13 @@ void BST::prev(const string word)
 
 	node* y = x->parent;
 
-	while (y != NULL && x == y->leftChild)
+	while (y != nullptr && x == y->leftChild)
 	{
 		x = y;
 		y = y->parent;
 	}
 
-	if (y != NULL)
+	if (y != nullptr)
 	{
 		cout << y->word << endl;
 	}
@@ -298,7 +298,7 @@ void BST::prev(const string word)
 
 void BST::next(const string word)
 {
-	if (root == NULL)
+	if (root == nullptr)
 	{
 		cout << endl;
 
@@ -307,7 +307,7 @@ void BST::next(const string word)
 
 	node* x = root;
 
-	if (x->rightChild != NULL)
+	if (x->rightChild != nullptr)
 	{
 		min(x->rightChild);
 
@@ -316,13 +316,13 @@ void BST::next(const string word)
 
 	node* y = x->parent;
 
-	while (y != NULL && x == y->rightChild)
+	while (y != nullptr && x == y->rightChild)
 	{
 		x = y;
 		y = y->parent;
 	}
 
-	if (y != NULL)
+	if (y != nullptr)
 	{
 		cout << y->word << endl;
 	}
