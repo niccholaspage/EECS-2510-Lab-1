@@ -31,56 +31,52 @@ void BST::deleteNode(node* node)
 
 void BST::insert(const string word)
 {
-	// SEE IF THIS IS NECESSARY OR IF WE CAN USE == LATER TO DO A PROPER ATTACHMENT
-	BST::node* node = findNode(word);
+	BST::node* p = root;
+	BST::node* q = nullptr;
 
-	if (node == nullptr)
+	while (p != nullptr)
 	{
-		BST::node* p = root;
-		BST::node* q = nullptr;
+		q = p;
 
-		while (p != nullptr)
+		if (word < p->word)
 		{
-			q = p;
-
-			if (word < p->word)
-			{
-				p = p->leftChild;
-			}
-			else
-			{
-				p = p->rightChild;
-			}
+			p = p->leftChild;
 		}
-
-		BST::node* newNode = new BST::node();
-
-		newNode->word = word;
-		newNode->count = 1;
-		newNode->leftChild = nullptr;
-		newNode->rightChild = nullptr;
-		newNode->parent = q;
-
-		if (q == nullptr)
+		else if (word > p->word)
 		{
-			root = newNode;
+			p = p->rightChild;
 		}
-		else if (newNode->word < q->word)
+		else
 		{
-			q->leftChild = newNode;
-		}
-		else {
-			q->rightChild = newNode;
-		}
+			p->count++;
 
-		printNode(newNode);
+			printNode(p);
+
+			return;
+		}
 	}
-	else
+
+	BST::node* newNode = new BST::node();
+
+	newNode->word = word;
+	newNode->count = 1;
+	newNode->leftChild = nullptr;
+	newNode->rightChild = nullptr;
+	newNode->parent = q;
+
+	if (q == nullptr)
 	{
-		node->count++;
-
-		printNode(node);
+		root = newNode;
 	}
+	else if (newNode->word < q->word)
+	{
+		q->leftChild = newNode;
+	}
+	else {
+		q->rightChild = newNode;
+	}
+
+	printNode(newNode);
 }
 
 void BST::remove(const string word)
@@ -158,7 +154,7 @@ void BST::parent(const string word)
 	}
 	else
 	{
-		printNode(p->parent);
+		cout << p->word << endl;
 	}
 }
 
@@ -202,7 +198,7 @@ void BST::list(int& index, node* node)
 		list(index, node->leftChild);
 	}
 
-	cout << "(" << ++index << ") " << node->word << " " << node->count << ", "; 
+	cout << "(" << ++index << ") " << node->word << " " << node->count << ", ";
 
 	if (node->rightChild != nullptr)
 	{
