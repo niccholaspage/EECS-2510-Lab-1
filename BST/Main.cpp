@@ -60,6 +60,14 @@ int main()
 		{
 			bst->prev(argument);
 		}
+		else if (command == "parent")
+		{
+			bst->parent(argument);
+		}
+		else if (command == "child")
+		{
+			bst->child(argument);
+		}
 		else if (command == "min")
 		{
 			bst->min();
