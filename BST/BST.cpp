@@ -13,15 +13,50 @@ BST::~BST()
 	}
 }
 
-void BST::deleteNode(node* node)
+void BST::deleteNode(node* p)
 {
+	int amountOfChildren = getChildCount(p);
 
+	if (isLeaf(p)) {
+		if (isRoot(p))
+		{
+			delete p;
+
+			root = nullptr;
+		}
+		else
+		{
+			node* parent = p->parent;
+
+			if (isLeftChild(p))
+			{
+				delete p;
+
+				parent->leftChild = nullptr;
+			}
+			else if (isRightChild(p))
+			{
+				delete p;
+
+				parent->rightChild = nullptr;
+			}
+			else {
+				// it should not be possible to get here
+				cout << "Internal error in deleteNode\n";
+				exit(1);
+			}
+		}
+
+		return;
+	}
+
+	cout << "Unhandled case!";
 }
 
 void BST::insert(const string word)
 {
-	BST::node* p = root;
-	BST::node* q = nullptr;
+	node* p = root;
+	node* q = nullptr;
 
 	while (p != nullptr)
 	{
@@ -45,7 +80,7 @@ void BST::insert(const string word)
 		}
 	}
 
-	BST::node* newNode = new BST::node();
+	node* newNode = new node();
 
 	newNode->word = word;
 	newNode->count = 1;
@@ -70,7 +105,7 @@ void BST::insert(const string word)
 
 void BST::remove(const string word)
 {
-	BST::node* node = findNode(word);
+	node* node = findNode(word);
 
 	if (node == nullptr)
 	{
@@ -147,7 +182,7 @@ void BST::parent(const string word)
 
 void BST::child(const string word)
 {
-	BST::node* p = findNode(word);
+	node* p = findNode(word);
 
 	if (p == nullptr)
 	{
@@ -323,3 +358,23 @@ void BST::printNode(node* node)
 {
 	cout << node->word << " " << node->count << endl;
 }
+
+bool BST::isLeaf(node* p)
+{
+	return p->leftChild == nullptr && p->rightChild == nullptr;
+}
+
+int BST::getChildCount(node* p) {
+	if (p == nullptr) return -1; // can’t count children of no node!
+	if (isLeaf(p)) return 0; // leaves have no child nodes
+	if (p->leftChild != nullptr && p->rightChild != nullptr) return 2; // 2 children
+	if (p->leftChild != nullptr && p->rightChild == nullptr) return 1; // 1 (l child)
+	if (p->leftChild == nullptr && p->rightChild != nullptr) return 1; // 1 (r child)
+	// it should not be possible to get here
+	cout << "Internal error in getChildCount\n"; // practice defensive
+	exit(1);                                     // programming!
+}
+
+bool BST::isLeftChild(node* p) { return p == p->parent->leftChild; }
+
+bool BST::isRightChild(node* p) { return p == p->parent->rightChild; }

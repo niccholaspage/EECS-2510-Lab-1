@@ -48,4 +48,14 @@ private:
 	void printNode(node* node);
 
 	void deleteNode(node* node);
+
+	bool isLeaf(node* p);
+
+	bool isRoot(node* p) { return p == root; }
+
+	int getChildCount(node* p);
+
+	bool isLeftChild(node* p);
+
+	bool isRightChild(node* p);
 };
