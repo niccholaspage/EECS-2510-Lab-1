@@ -15,18 +15,7 @@ BST::~BST()
 
 void BST::deleteNode(node* node)
 {
-	//TODO: THIS ISN'T ALLOWED, MAKE SURE TO REDO
-	if (node->leftChild != nullptr)
-	{
-		deleteNode(node->leftChild);
-	}
 
-	if (node->rightChild != nullptr)
-	{
-		deleteNode(node->rightChild);
-	}
-
-	delete node;
 }
 
 void BST::insert(const string word)
@@ -90,20 +79,18 @@ void BST::remove(const string word)
 		return;
 	}
 
-	if (node->count == 1)
-	{
-		string word = node->word;
-
-		deleteNode(node);
-
-		cout << word << " 0";
-	}
-	else
+	if (node->count > 1)
 	{
 		node->count--;
 
 		printNode(node);
+
+		return;
 	}
+
+	deleteNode(node);
+
+	cout << word << " 0" << endl;
 }
 
 void BST::search(const string word)
