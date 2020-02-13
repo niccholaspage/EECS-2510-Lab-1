@@ -219,13 +219,13 @@ void BST::parent(const string word)
 {
 	node* p = findNode(word);
 
-	if (p == nullptr)
+	if (p == nullptr || p->parent == nullptr)
 	{
 		cout << endl;
 	}
 	else
 	{
-		cout << p->word << endl;
+		cout << p->parent->word << endl;
 	}
 }
 
