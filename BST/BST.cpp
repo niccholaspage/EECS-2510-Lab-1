@@ -336,14 +336,14 @@ void BST::max(node* p)
 
 void BST::prev(const string word)
 {
-	if (root == nullptr)
+	node* x = findNode(word);
+
+	if (x == nullptr)
 	{
 		cout << endl;
 
 		return;
 	}
-
-	node* x = root;
 
 	if (x->leftChild != nullptr)
 	{
@@ -372,14 +372,14 @@ void BST::prev(const string word)
 
 void BST::next(const string word)
 {
-	if (root == nullptr)
+	node* x = findNode(word);
+
+	if (x == nullptr)
 	{
 		cout << endl;
 
 		return;
 	}
-
-	node* x = root;
 
 	if (x->rightChild != nullptr)
 	{
