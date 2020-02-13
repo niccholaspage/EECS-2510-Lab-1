@@ -183,12 +183,16 @@ void BST::list(int& index, node* node)
 	if (node->leftChild != nullptr)
 	{
 		list(index, node->leftChild);
+
+		cout << ", ";
 	}
 
-	cout << "(" << ++index << ") " << node->word << " " << node->count << ", ";
+	cout << "(" << ++index << ") " << node->word << " " << node->count;
 
 	if (node->rightChild != nullptr)
 	{
+		cout << ", ";
+
 		list(index, node->rightChild);
 	}
 }
