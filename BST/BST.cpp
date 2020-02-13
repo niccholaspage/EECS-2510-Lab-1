@@ -17,7 +17,7 @@ void BST::deleteNode(node* p)
 {
 	int amountOfChildren = getChildCount(p);
 
-	if (isLeaf(p)) {
+	if (amountOfChildren == 0) {
 		if (isRoot(p))
 		{
 			delete p;
@@ -43,6 +43,55 @@ void BST::deleteNode(node* p)
 			else {
 				// it should not be possible to get here
 				cout << "Internal error in deleteNode\n";
+
+				exit(1);
+			}
+		}
+
+		return;
+	}
+
+	if (amountOfChildren == 1)
+	{
+		node* child = p->leftChild;
+
+		if (child == nullptr)
+		{
+			child = p->rightChild;
+		}
+
+		if (isRoot(p))
+		{
+			root = child;
+
+			child->parent = nullptr;
+
+			delete p;
+		}
+		else
+		{
+			node* parent = p->parent;
+
+			if (isLeftChild(p))
+			{
+				parent->leftChild = child;
+
+				child->parent = parent;
+
+				delete p;
+			}
+			else if (isRightChild(p))
+			{
+				parent->rightChild = child;
+
+				child->parent = parent;
+
+				delete p;
+			}
+			else
+			{
+				cout << "ERROR in deleteNode";
+
 				exit(1);
 			}
 		}
@@ -190,7 +239,10 @@ void BST::child(const string word)
 	}
 	else
 	{
-		cout << p->leftChild->word << ", " << p->rightChild->word << endl;
+		string leftChildWord = p->leftChild == nullptr ? "NULL" : p->leftChild->word;
+		string rightChildWord = p->rightChild == nullptr ? "NULL" : p->rightChild->word;
+
+		cout << leftChildWord << ", " << rightChildWord << endl;
 	}
 }
 
