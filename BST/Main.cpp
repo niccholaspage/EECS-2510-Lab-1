@@ -1,3 +1,16 @@
+//==============================================================================================
+// Main.cpp - Binary Search Tree program
+//
+// This program implements a Binary Search Tree data type with dynamic set operators
+// to allow for insertion and deletion of items in a Binary Search Tree. The Binary
+// Search Tree can be searched and minimum, maximum, next, and previous values can
+// be retrieved. Children and parents of nodes can also be found. This program takes
+// commands that can manipulate the Binary Search Tree and print information about it.
+//
+// Author:    Nicholas Nassar, University of Toledo
+// Date:      Feb 18, 2020
+// Copyright: Copyright 2020 by Nicholas Nassar. All rights reserved.
+
 #include <iostream>
 #include "BST.h"
 
