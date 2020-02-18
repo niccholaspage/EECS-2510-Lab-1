@@ -18,12 +18,12 @@ BST::~BST()
 void BST::traverseDestruct(node* p) {
 	if (p->leftChild != nullptr)
 	{
-		traverseDestruct(p);
+		traverseDestruct(p->leftChild);
 	}
 
 	if (p->rightChild != nullptr)
 	{
-		traverseDestruct(p);
+		traverseDestruct(p->rightChild);
 	}
 
 	delete p;
