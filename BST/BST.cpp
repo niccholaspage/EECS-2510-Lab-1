@@ -7,11 +7,26 @@ BST::BST()
 
 BST::~BST()
 {
-	// Update to use traversal instead
-	while (root != nullptr)
+	if (root == nullptr)
 	{
-		deleteNode(root);
+		return;
 	}
+
+	traverseDestruct(root);
+}
+
+void BST::traverseDestruct(node* p) {
+	if (p->leftChild != nullptr)
+	{
+		traverseDestruct(p);
+	}
+
+	if (p->rightChild != nullptr)
+	{
+		traverseDestruct(p);
+	}
+
+	delete p;
 }
 
 void BST::deleteNode(node* p)

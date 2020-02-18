@@ -41,17 +41,19 @@ private:
 
 	node* findNode(const string word);
 
-	node* minNode(node* node);
+	node* minNode(node* p);
 
-	void min(node* node);
+	void traverseDestruct(node* p);
 
-	void max(node* node);
+	void min(node* p);
 
-	void list(int& index, node* node);
+	void max(node* p);
 
-	void printNode(node* node);
+	void list(int& index, node* p);
 
-	void deleteNode(node* node);
+	void printNode(node* p);
+
+	void deleteNode(node* p);
 
 	bool isLeaf(node* p);
 
