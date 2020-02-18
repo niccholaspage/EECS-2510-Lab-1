@@ -37,7 +37,11 @@ private:
 
 	node* root = nullptr;
 
+	node* nextNode(node* p);
+
 	node* findNode(const string word);
+
+	node* minNode(node* node);
 
 	void min(node* node);
 

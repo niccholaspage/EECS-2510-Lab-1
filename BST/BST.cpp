@@ -7,7 +7,8 @@ BST::BST()
 
 BST::~BST()
 {
-	if (root != nullptr)
+	// Update to use traversal instead
+	while (root != nullptr)
 	{
 		deleteNode(root);
 	}
@@ -99,7 +100,39 @@ void BST::deleteNode(node* p)
 		return;
 	}
 
-	cout << "Unhandled case!";
+	// Two children
+	node* y = nextNode(p);
+
+	if (y == p->rightChild)
+	{
+		p->word = y->word;
+
+		p->count = y->count;
+
+		p->rightChild = y->rightChild;
+
+		if (y->rightChild != nullptr)
+		{
+			y->rightChild->parent = p;
+		}
+
+		delete y;
+	}
+	else
+	{
+		p->word = y->word;
+
+		p->count = y->count;
+
+		p->rightChild->leftChild = y->rightChild;
+
+		if (y->rightChild != nullptr)
+		{
+			y->rightChild->parent = p->rightChild;
+		}
+
+		delete y;
+	}
 }
 
 void BST::insert(const string word)
@@ -248,7 +281,6 @@ void BST::child(const string word)
 
 void BST::list()
 {
-	//TODO: Fix list formatting
 	if (root == nullptr)
 	{
 		cout << "Set is empty" << endl;
@@ -291,11 +323,23 @@ void BST::min()
 
 void BST::min(node* p)
 {
-	if (p == nullptr)
+	node* min = minNode(p);
+
+	if (p != nullptr)
+	{
+		cout << p->word << endl;
+	}
+	else
 	{
 		cout << endl;
+	}
+}
 
-		return;
+BST::node* BST::minNode(node* p)
+{
+	if (p == nullptr)
+	{
+		return nullptr;
 	}
 
 	while (p->leftChild != nullptr)
@@ -303,10 +347,7 @@ void BST::min(node* p)
 		p = p->leftChild;
 	}
 
-	if (p != nullptr)
-	{
-		cout << p->word << endl;
-	}
+	return p;
 }
 
 void BST::max()
@@ -370,35 +411,38 @@ void BST::prev(const string word)
 	}
 }
 
+BST::node* BST::nextNode(node* p)
+{
+	if (p == nullptr)
+	{
+		return nullptr;
+	}
+
+	if (p->rightChild != nullptr)
+	{
+		return minNode(p->rightChild);
+	}
+
+	node* q = p->parent;
+
+	while (q != nullptr && p == q->rightChild)
+	{
+		p = q;
+		q = q->parent;
+	}
+
+	return q;
+}
+
 void BST::next(const string word)
 {
 	node* x = findNode(word);
 
-	if (x == nullptr)
+	node* next = nextNode(x);
+
+	if (next != nullptr)
 	{
-		cout << endl;
-
-		return;
-	}
-
-	if (x->rightChild != nullptr)
-	{
-		min(x->rightChild);
-
-		return;
-	}
-
-	node* y = x->parent;
-
-	while (y != nullptr && x == y->rightChild)
-	{
-		x = y;
-		y = y->parent;
-	}
-
-	if (y != nullptr)
-	{
-		cout << y->word << endl;
+		cout << next->word << endl;
 	}
 	else
 	{
