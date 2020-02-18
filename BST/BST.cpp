@@ -13,6 +13,8 @@ BST::~BST()
 	}
 
 	traverseDestruct(root);
+
+	root = nullptr;
 }
 
 void BST::traverseDestruct(node* p) {
