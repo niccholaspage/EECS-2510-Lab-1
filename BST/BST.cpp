@@ -199,25 +199,25 @@ void BST::insert(const string word)
 
 void BST::remove(const string word)
 {
-	node* node = findNode(word);
+	node* p = findNode(word);
 
-	if (node == nullptr)
+	if (p == nullptr)
 	{
 		cout << word << " -1" << endl;
 
 		return;
 	}
 
-	if (node->count > 1)
+	if (p->count > 1)
 	{
-		node->count--;
+		p->count--;
 
-		printNode(node);
+		printNode(p);
 
 		return;
 	}
 
-	deleteNode(node);
+	deleteNode(p);
 
 	cout << word << " 0" << endl;
 }
@@ -309,22 +309,22 @@ void BST::list()
 	}
 };
 
-void BST::list(int& index, node* node)
+void BST::list(int& index, node* p)
 {
-	if (node->leftChild != nullptr)
+	if (p->leftChild != nullptr)
 	{
-		list(index, node->leftChild);
+		list(index, p->leftChild);
 
 		cout << ", ";
 	}
 
-	cout << "(" << ++index << ") " << node->word << " " << node->count;
+	cout << "(" << ++index << ") " << p->word << " " << p->count;
 
-	if (node->rightChild != nullptr)
+	if (p->rightChild != nullptr)
 	{
 		cout << ", ";
 
-		list(index, node->rightChild);
+		list(index, p->rightChild);
 	}
 }
 
@@ -462,9 +462,9 @@ void BST::next(const string word)
 	}
 }
 
-void BST::printNode(node* node)
+void BST::printNode(node* p)
 {
-	cout << node->word << " " << node->count << endl;
+	cout << p->word << " " << p->count << endl;
 }
 
 bool BST::isLeaf(node* p)
