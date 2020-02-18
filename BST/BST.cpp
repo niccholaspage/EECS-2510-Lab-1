@@ -120,36 +120,31 @@ void BST::deleteNode(node* p)
 	// Two children
 	node* y = nextNode(p);
 
+	// Perform "copy" of y's contents into p
+	p->word = y->word;
+
+	p->count = y->count;
+
 	if (y == p->rightChild)
 	{
-		p->word = y->word;
-
-		p->count = y->count;
-
 		p->rightChild = y->rightChild;
 
 		if (y->rightChild != nullptr)
 		{
 			y->rightChild->parent = p;
 		}
-
-		delete y;
 	}
 	else
 	{
-		p->word = y->word;
-
-		p->count = y->count;
-
 		p->rightChild->leftChild = y->rightChild;
 
 		if (y->rightChild != nullptr)
 		{
 			y->rightChild->parent = p->rightChild;
 		}
-
-		delete y;
 	}
+
+	delete y;
 }
 
 void BST::insert(const string word)
