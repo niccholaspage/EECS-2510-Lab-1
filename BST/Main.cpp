@@ -38,8 +38,6 @@ int main()
 
 	while (true)
 	{
-		string input;
-
 		string command;
 
 		cin >> command;
