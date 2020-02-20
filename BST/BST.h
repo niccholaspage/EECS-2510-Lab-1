@@ -11,8 +11,8 @@ public:
 	BST();
 	~BST();
 
-	void insert(const string word);	// adds word to binary search tree
-	void remove(const string word);	// deletes word from binary search tree, MAGICALLY NAME THIS DELETE
+	void insert(const string word);	// adds a word to the binary search tree
+	void remove(const string word);	// decrements the count of a word in the binary search tree, or deletes it from the tree if it has a count of 1
 	void search(const string word);	// searches the binary search tree for the word
 
 	void min();	// Prints the minimum value of the set.
@@ -28,18 +28,18 @@ public:
 private:
 	struct node
 	{
-		string word;
-		int count = 1;
-		node* leftChild = nullptr;
-		node* rightChild = nullptr;
-		node* parent = nullptr;
+		string word; // The word of the node
+		int count = 1; // The amount of times the word has been inserted into the binary search tree
+		node* leftChild = nullptr; // A pointer to the left child of the node
+		node* rightChild = nullptr; // A pointer to the right child of the node
+		node* parent = nullptr; // A pointer to the parent of the node
 	};
 
-	node* root = nullptr;
+	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
 
-	node* nextNode(node* p);
+	node* nextNode(node* p); // Returns a pointer to the successor node of p
 
-	node* findNode(const string word);
+	node* findNode(const string word); // Returns a pointer to the node with the given word
 
 	node* minNode(node* p);
 
