@@ -40,64 +40,17 @@ int main()
 	{
 		string input;
 
-		getline(cin, input);
-
 		string command;
 
-		string argument;
-
-		char delimeter = ' ';
-
-		int index = input.find(' ');
-
-		if (index == string::npos)
-		{
-			command = input;
-
-			argument = "";
-		}
-		else
-		{
-			command = input.substr(0, index);
-
-			//TODO: ARGUMENT ONLY NEEDS TO BE SINGLE WORD SO UPDATE THIS PLEASE.
-			argument = input.substr(index + 1, input.length());
-		}
+		cin >> command;
 
 		for (unsigned int i = 0; i < command.length(); i++)
 		{
 			command[i] = tolower(command[i]);
 		}
 
-		if (command == "insert")
-		{
-			bst->insert(argument);
-		}
-		else if (command == "delete")
-		{
-			bst->remove(argument);
-		}
-		else if (command == "search")
-		{
-			bst->search(argument);
-		}
-		else if (command == "next")
-		{
-			bst->next(argument);
-		}
-		else if (command == "prev")
-		{
-			bst->prev(argument);
-		}
-		else if (command == "parent")
-		{
-			bst->parent(argument);
-		}
-		else if (command == "child")
-		{
-			bst->child(argument);
-		}
-		else if (command == "min")
+
+		if (command == "min")
 		{
 			bst->min();
 		}
@@ -116,6 +69,41 @@ int main()
 		else if (command == "quit")
 		{
 			break;
+		}
+		else
+		{
+			string argument;
+
+			cin >> argument;
+
+			if (command == "insert")
+			{
+				bst->insert(argument);
+			}
+			else if (command == "delete")
+			{
+				bst->remove(argument);
+			}
+			else if (command == "search")
+			{
+				bst->search(argument);
+			}
+			else if (command == "next")
+			{
+				bst->next(argument);
+			}
+			else if (command == "prev")
+			{
+				bst->prev(argument);
+			}
+			else if (command == "parent")
+			{
+				bst->parent(argument);
+			}
+			else if (command == "child")
+			{
+				bst->child(argument);
+			}
 		}
 	}
 
