@@ -16,6 +16,12 @@
 
 using namespace std;
 
+bool doesCommandRequireArgument(string command)
+{
+	return command == "insert" || command == "delete" || command == "search" || command == "next" || command == "prev"
+		|| command == "parent" || command == "child";
+}
+
 void printHelp()
 {
 	cout << "insert <string>" << endl;
@@ -68,7 +74,7 @@ int main()
 		{
 			break;
 		}
-		else
+		else if (doesCommandRequireArgument(command))
 		{
 			string argument;
 
