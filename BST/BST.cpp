@@ -472,6 +472,11 @@ bool BST::isLeaf(node* p)
 	return p->leftChild == nullptr && p->rightChild == nullptr;
 }
 
+bool BST::isRoot(node* p)
+{
+	return p == root;
+}
+
 int BST::getChildCount(node* p) {
 	if (p == nullptr) return -1; // can’t count children of no node!
 	if (isLeaf(p)) return 0; // leaves have no child nodes

@@ -41,27 +41,27 @@ private:
 
 	node* findNode(const string word); // Returns a pointer to the node with the given word
 
-	node* minNode(node* p);
+	node* minNode(node* p); // Returns a pointer with the minimum string in the subtree of the given node
 
-	void traverseDestruct(node* p);
+	void traverseDestruct(node* p); // Traverses through the given node and deletes its children recursively as well asitself
 
-	void min(node* p);
+	void min(node* p); // Prints the node with the minimum string in the subtree of the given node
 
-	void max(node* p);
+	void max(node* p); // Prints the node with the maximum string in the subtree of the given node
 
-	void list(int& index, node* p);
+	void list(int& index, node* p); // Traverses through the children of a node as well as the node and prints
 
-	void printNode(node* p);
+	void printNode(node* p); // Prints the given node's string and count
 
-	void deleteNode(node* p);
+	void deleteNode(node* p); // Deletes the given node from the tree
 
-	bool isLeaf(node* p);
+	bool isLeaf(node* p); // Checks if the given node is a leaf (has no children)
 
-	bool isRoot(node* p) { return p == root; }
+	bool isRoot(node* p); // Checks if the given node is the root of the tree
 
-	int getChildCount(node* p);
+	int getChildCount(node* p); // Returns the number of children the given node has
 
-	bool isLeftChild(node* p);
+	bool isLeftChild(node* p); // Checks if the given node is a left child of its parent
 
-	bool isRightChild(node* p);
+	bool isRightChild(node* p); // Checks if the given node is a right child of its parent
 };
