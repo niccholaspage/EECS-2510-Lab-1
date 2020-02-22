@@ -2,32 +2,54 @@
 
 BST::BST()
 {
-	root = nullptr;
+	// constructor -- there's nothing to do other then making sure
+	// the root pointer is a nullptr. The default value is in the
+	// header, but I am doing it again for redundancy and clarity.
+	//
+	root = nullptr; // When a new binary search tree is constructed, there is no root node.
 }
 
 BST::~BST()
 {
-	if (root == nullptr)
+	// On deconstruction, we have to delete the entire tree by
+	// deleting each node in the tree, one by one.
+	//
+	if (root == nullptr) // Check if the root node is null
 	{
-		return;
+		return; 
 	}
 
+
+	// Destroying the tree is done by doing a traversal through all
+	// of the nodes and their children.
 	traverseDestruct(root);
 
+	// After the traverseDestruct method, we will have deleted
+	// all of the nodes. By setting root to nullptr, we make sure
+	// we don't have an old reference to the now non-existent root
+	// node.
 	root = nullptr;
 }
 
 void BST::traverseDestruct(node* p) {
-	if (p->leftChild != nullptr)
+	// This recursive method can be called on a given node to delete
+	// its children and itself. Doing this recursively ensures that
+	// every node will get deleted as long as this method is initially
+	// called on the root node.
+	//
+	if (p->leftChild != nullptr) // Check if the left child of the node is not null
 	{
-		traverseDestruct(p->leftChild);
+		traverseDestruct(p->leftChild); // Since the node does have a left child, we will call the traverseDestruct method on the node
 	}
 
-	if (p->rightChild != nullptr)
+	if (p->rightChild != nullptr) // Check if the right child is not null
 	{
-		traverseDestruct(p->rightChild);
+		traverseDestruct(p->rightChild); // Since the node does have a right child, we will call the traverseDestruct method on the node
 	}
 
+	// Now that we have properly deleted the children of the given node,
+	// we are safe to delete the node since we have already taken care of
+	// its children.
 	delete p;
 }
 
