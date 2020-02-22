@@ -56,40 +56,48 @@ void BST::traverseDestruct(node* p) {
 
 void BST::deleteNode(node* p)
 {
-	int amountOfChildren = getChildCount(p);
+	// This method deletes the given node from the tree.
+	// Depending on the amount of children of the node,
+	// we must use different methods to delete the node
+	// and properly adjust the tree.
+	//
+	int amountOfChildren = getChildCount(p); // Set the variable to the amount of children for the given node so we can handle each delete case
 
-	if (amountOfChildren == 0) {
-		if (isRoot(p))
+	if (amountOfChildren == 0) // If the node has no children,
+	{
+		if (isRoot(p))		   // lets check if the node is the root,
 		{
-			delete p;
+			delete p;		   // if so, we can just delete the node,
 
-			root = nullptr;
+			root = nullptr;	   // and set the root to nullptr, making the tree empty.
 		}
-		else
+		else				   // otherwise,
 		{
-			node* parent = p->parent;
+			node* parent = p->parent; // get the parent of the node
 
-			if (isLeftChild(p))
+			if (isLeftChild(p)) // check if the node is a left child
 			{
-				delete p;
+				delete p; // Delete the node
 
-				parent->leftChild = nullptr;
+				parent->leftChild = nullptr; // Set the parent's left child to null, as the node was deleted.
 			}
-			else if (isRightChild(p))
+			else if (isRightChild(p)) // otherwise, check if the node is a right child
 			{
-				delete p;
+				delete p; // Delete the node
 
-				parent->rightChild = nullptr;
+				parent->rightChild = nullptr; // Set the parent's right child to null, as the node was deleted.
 			}
 			else {
-				// it should not be possible to get here
-				cout << "Internal error in deleteNode\n";
+				// it should not be possible to get here, as the node
+				// has to be a left or right child of its parent since
+				// it has to have a parent.
+				cout << "Internal error in deleteNode\n"; // Print out that something awful has happened.
 
-				exit(1);
+				exit(1); // Exit the program - oops!
 			}
 		}
 
-		return;
+		return; // By the end of this case, we have deleted the pointer, so we can just return here.
 	}
 
 	if (amountOfChildren == 1)
