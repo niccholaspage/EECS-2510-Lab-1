@@ -100,22 +100,22 @@ void BST::deleteNode(node* p)
 		return; // By the end of this case, we have deleted the pointer, so we can just return here.
 	}
 
-	if (amountOfChildren == 1)
+	if (amountOfChildren == 1)      // If the node has one child,
 	{
-		node* child = p->leftChild;
+		node* child = p->leftChild; // lets get the left child of the node,
 
-		if (child == nullptr)
+		if (child == nullptr)      // If the child is null,
 		{
-			child = p->rightChild;
+			child = p->rightChild; // then the one child has to be the right child.
 		}
 
-		if (isRoot(p))
+		if (isRoot(p))    // If the given node is null,
 		{
-			root = child;
+			root = child; // Set the tree's root to the child.
 
-			child->parent = nullptr;
+			child->parent = nullptr; // Since the child node is now the root, we set its parent to null
 
-			delete p;
+			delete p; // Delete the node, as it now has been removed from the tree
 		}
 		else
 		{
