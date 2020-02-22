@@ -50,6 +50,7 @@ void BST::traverseDestruct(node* p) {
 	// Now that we have properly deleted the children of the given node,
 	// we are safe to delete the node since we have already taken care of
 	// its children.
+	//
 	delete p;
 }
 
