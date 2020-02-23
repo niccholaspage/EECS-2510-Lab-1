@@ -455,17 +455,20 @@ void BST::min(node* p)
 
 BST::node* BST::minNode(node* p)
 {
-	if (p == nullptr)
+	// This method returns a pointer to a node that is the minimum node of a subtree
+	// of the given node. If there is no minimum node, it just returns nullptr.
+	//
+	if (p == nullptr)   // If the given node is nullptr,
 	{
-		return nullptr;
+		return nullptr; // there is no minimum node to return, so return nullptr!
 	}
 
-	while (p->leftChild != nullptr)
+	while (p->leftChild != nullptr) // While we still have a left child of p,
 	{
-		p = p->leftChild;
+		p = p->leftChild; // we set p to old p's left child.
 	}
 
-	return p;
+	return p; // We now have the minimum node of the subtree, so we return a pointer to it.
 }
 
 void BST::max()
