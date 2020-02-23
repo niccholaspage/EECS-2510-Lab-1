@@ -443,13 +443,13 @@ void BST::min(node* p)
 	//
 	node* min = minNode(p); // Gets the minimum node of the subtree of the given node
 
-	if (p != nullptr)
+	if (min != nullptr) // If the minimum node is not null,
 	{
-		cout << p->word << endl;
+		cout << min->word << endl; // print out its word.
 	}
-	else
+	else // Otherwise,
 	{
-		cout << endl;
+		cout << endl; // we just print out a newline.
 	}
 }
 
