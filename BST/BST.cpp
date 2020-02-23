@@ -429,12 +429,19 @@ void BST::list(int& index, node* p)
 
 void BST::min()
 {
+	// This method prints out the minimum word in the tree, or a new line
+	// if there are no nodes in the tree. Really, it just calls an overloaded
+	// min method with the root node as the parameter.
 	min(root);
 }
 
 void BST::min(node* p)
 {
-	node* min = minNode(p);
+	// This method prints out the word from the minimum node of the subtree
+	// of the given node. If there is no minimum node, it just prints out a
+	// newline.
+	//
+	node* min = minNode(p); // Gets the minimum node of the subtree of the given node
 
 	if (p != nullptr)
 	{
