@@ -285,7 +285,7 @@ void BST::search(const string word)
 	// we print the word and its count. Otherwise, we print out the word and
 	// 0, to show it is not in the tree.
 	//
-	node* p = findNode(word); // Get a pointer to the node containing the word we aare searching for
+	node* p = findNode(word); // Get a pointer to the node containing the word we are searching for
 
 	if (p == nullptr) // If there is no node with the given word in the tree,
 	{
@@ -324,12 +324,16 @@ BST::node* BST::findNode(const string word)
 		}
 	}
 
-	return nullptr;
+	return nullptr; // Since we were not able to find a node with the given word, we just return nullptr
 }
 
 void BST::parent(const string word)
 {
-	node* p = findNode(word);
+	// This method prints the parent node of a node with the given word.
+	// If a node with the given word isn't found, it just prints a
+	// newline.
+	//
+	node* p = findNode(word); // Get a pointer to the node containing the given word
 
 	if (p == nullptr || p->parent == nullptr)
 	{
