@@ -281,36 +281,46 @@ void BST::remove(const string word)
 
 void BST::search(const string word)
 {
-	node* p = findNode(word);
+	// This method searches the tree for the given word. If it is found,
+	// we print the word and its count. Otherwise, we print out the word and
+	// 0, to show it is not in the tree.
+	//
+	node* p = findNode(word); // Get a pointer to the node containing the word we aare searching for
 
-	if (p == nullptr)
+	if (p == nullptr) // If there is no node with the given word in the tree,
 	{
 
-		cout << word << " 0" << endl;
+		cout << word << " 0" << endl; // we just print the word and 0, showing the tree does not contain the node inside of it.
 	}
-	else
+	else // Otherwise,
 	{
-		printNode(p);
+		printNode(p); // we just print out the node's word and count.
 	}
 }
 
 BST::node* BST::findNode(const string word)
 {
-	node* p = root;
+	// This helper method takes the given word and attempts to find a node
+	// containing it. It either returns a pointer to the node if it is found,
+	// or nullptr if nothing was found.
+	//
+	node* p = root; // We start at the root of the tree.
 
-	while (p != nullptr)
+	while (p != nullptr) // While p is not null,
 	{
-		if (p->word == word)
+		if (p->word == word) // We check if p's word is the word we are looking for,
 		{
-			return p;
+			return p;		// If it is, we return node p, as we have found it!
 		}
-		else if (word < p->word)
+		else if (word < p->word) // Otherwise, we check if the word is less than p's word.
 		{
-			p = p->leftChild;
+			p = p->leftChild;	 // If so, lets set p to old p's left child.
 		}
-		else if (word > p->word)
+		else
 		{
-			p = p->rightChild;
+			// Since p's word was not less than or equal to the given word,
+			// it must be greater than the given word,
+			p = p->rightChild; // so we set p to p's right child.
 		}
 	}
 
