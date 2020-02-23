@@ -432,6 +432,7 @@ void BST::min()
 	// This method prints out the minimum word in the tree, or a new line
 	// if there are no nodes in the tree. Really, it just calls an overloaded
 	// min method with the root node as the parameter.
+	//
 	min(root);
 }
 
@@ -473,27 +474,36 @@ BST::node* BST::minNode(node* p)
 
 void BST::max()
 {
+	// This method prints out the maximum word in the tree, or a new line
+	// if there are no nodes in the tree. Really, it just calls an overloaded
+	// max method with the root node as the parameter.
+	//
 	max(root);
 }
 
 void BST::max(node* p)
 {
-	if (p == nullptr)
+	// This method prints out the word from the maximum node of the subtree
+	// of the given node. If there is no maximum node, it just prints out a
+	// newline.
+	//
+	if (p == nullptr) // If the given node is nullptr,
 	{
-		cout << endl;
+		cout << endl; // then we just print out a newline, as we don't have a max!
 
-		return;
+		return; // We return because we have nothing else to do.
 	}
 
-	while (p->rightChild != nullptr)
+	while (p->rightChild != nullptr) // While we still have a right child of p,
 	{
-		p = p->rightChild;
+		p = p->rightChild; // we set p to old p's right child.
 	}
 
-	if (p != nullptr)
-	{
-		cout << p->word << endl;
-	}
+	// We print out node p's word. We know p is not null because we only got
+	// here if p was not null in the beginning, and p is only set to
+	// NOT NULL right childs of the previous node at p.
+	//
+	cout << p->word << endl;
 }
 
 void BST::prev(const string word)
