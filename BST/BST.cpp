@@ -213,27 +213,32 @@ void BST::insert(const string word)
 		}
 	}
 
-	node* newNode = new node();
+	// Since we've gotten here, we weren't able to find a node
+	// with the word already in the tree, so lets build a new
+	// node to store the word.
+	//
+	node* newNode = new node(); // Construct a new node
 
-	newNode->word = word;
-	newNode->count = 1;
-	newNode->leftChild = nullptr;
+	newNode->word = word; // Set the new node's word to the word we are inserting
+	newNode->count = 1; // Redundantly set the count in the new node to 1
+	newNode->leftChild = nullptr; // Since new nodes are added as leaves, left and right child pointers are null
 	newNode->rightChild = nullptr;
-	newNode->parent = q;
+	newNode->parent = q; // As q lags behind p in the end, the new node's parent is set to q.
 
-	if (q == nullptr)
+	if (q == nullptr) // If q is nullptr, that means that the new node has no parent, so it is the root!
 	{
-		root = newNode;
+		root = newNode; // Since the new node must be the root, we set the root of the tree to the new node.
 	}
-	else if (newNode->word < q->word)
+	else if (newNode->word < q->word) // Since the new node is not the root, we check if its word is less than its parent's.
 	{
-		q->leftChild = newNode;
+		q->leftChild = newNode; // If so, we set q's left child to the new node.
 	}
-	else {
-		q->rightChild = newNode;
+	else // Otherwise, the new node's word must be greater than q,
+	{
+		q->rightChild = newNode; // so we set q's right child to the new node.
 	}
 
-	printNode(newNode);
+	printNode(newNode); // Finally, we print the new node's word and count
 }
 
 void BST::remove(const string word)
