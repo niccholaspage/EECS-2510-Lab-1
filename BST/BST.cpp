@@ -243,26 +243,39 @@ void BST::insert(const string word)
 
 void BST::remove(const string word)
 {
-	node* p = findNode(word);
+	// This method removes the given word from a tree.
+	// If we find a node with the word in the tree, we check
+	// if its count is greater than one, and if so, decrement
+	// the count by one. Otherwise, we delete the node from the
+	// tree. If we can't find a node with the word, then we just
+	// print out the word and -1 to indicate the node wasn't found.
+	node* p = findNode(word); // Get a pointer to the node containing the word we are going to get rid of
 
-	if (p == nullptr)
+	if (p == nullptr) // If we didn't find a node with the word in it,
 	{
-		cout << word << " -1" << endl;
+		cout << word << " -1" << endl; // We just print out the word and -1 to indicate the node wasn't found
 
-		return;
+		return; // Now we return because we are done, there is nothing to do anymore.
 	}
 
-	if (p->count > 1)
+	if (p->count > 1) // Since the node's count is greater than one,
 	{
-		p->count--;
+		p->count--;   // we just decrement the count by one.
 
-		printNode(p);
+		printNode(p); // We now print the node's word and count
 
-		return;
+		return; // Since we've taken care of decrementing the count, we are done!
 	}
 
+	// Since the node's count was 1, we call the deleteNode
+	// method to remove the node from the tree properly.
+	//
 	deleteNode(p);
 
+	// Since the node has been deleted from the tree now,
+	// we print the word and 0 next to it, to show that
+	// the word is no longer in the tree.
+	//
 	cout << word << " 0" << endl;
 }
 
