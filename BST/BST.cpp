@@ -374,38 +374,56 @@ void BST::child(const string word)
 
 void BST::list()
 {
-	if (root == nullptr)
+	// This method traverses through the entire tree and prints out the nodes in a nicely formatted list
+	// with indexes and the node's word and count.
+	//
+	if (root == nullptr) // If the root is nullptr, than there is nothing in the tree,
 	{
-		cout << "Set is empty" << endl;
+		cout << "Set is empty" << endl; // so we just print out "Set is empty"
 	}
-	else
+	else // otherwise, we actually have nodes in the tree,
 	{
-		cout << "Set contains: ";
+		cout << "Set contains: "; // so we print out "Set contains: " as a prefix,
 
-		int index = 0;
+		int index = 0; // We set up a index variable to 0 that is incremented before printing a node
 
-		list(index, root);
+		list(index, root); // We now start our recursive traversal through the root node with our overloaded list method.
 
-		cout << endl;
+		cout << endl; // We finish off the output by printing out a newline, as we never did it inside the above method call.
 	}
 };
 
 void BST::list(int& index, node* p)
 {
-	if (p->leftChild != nullptr)
+	// This method does a recursive traversal through all of the nodes in the tree
+	// and prints out their word and count with an index parameter. The index
+	// parameter is passed by reference so that no matter which recursive call
+	// of this method we are in, the correct index will always be printed out.
+	// Through talking with Dr. Thomas, I learned that the index variable could
+	// have been a class variable instead. I enjoy this method because it does
+	// not require any cleanup or setup of a class variable.
+	//
+	if (p->leftChild != nullptr)   // If the left child of the node is not null,
 	{
-		list(index, p->leftChild);
+		list(index, p->leftChild); // we print out the left child node as well, recursively taking care of its children.
 
+		// Since we have now printed out the left child node, we need to print
+		// out a comma to separate it from the node we are about to print.
+		//
 		cout << ", ";
 	}
 
+	// We now print out the index AFTER incrementing it, as well as the node's
+	// word and count.
 	cout << "(" << ++index << ") " << p->word << " " << p->count;
 
-	if (p->rightChild != nullptr)
+	if (p->rightChild != nullptr) // If the right child of the node is not null,
 	{
+		// we print out a comma to separate the node we already printed from
+		// the right child we are about to print.
 		cout << ", ";
 
-		list(index, p->rightChild);
+		list(index, p->rightChild); // we now print out the right child node as well, recursively taking care of its children.
 	}
 }
 
