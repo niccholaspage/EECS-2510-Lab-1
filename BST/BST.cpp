@@ -583,30 +583,73 @@ void BST::next(const string word)
 
 void BST::printNode(node* p)
 {
+	// This helper method prints the given node's word,
+	// a space, and its count.
+	// This assumes that the node passed in is not null!
 	cout << p->word << " " << p->count << endl;
 }
 
 bool BST::isLeaf(node* p)
 {
+	// This helper method simply checks if the given node is a leaf,
+	// meaning it has no left or right child.
+	//
 	return p->leftChild == nullptr && p->rightChild == nullptr;
 }
 
 bool BST::isRoot(node* p)
 {
+	// This helper method simply returns if the given node is the
+	// root node of the tree.
+	//
 	return p == root;
 }
 
-int BST::getChildCount(node* p) {
-	if (p == nullptr) return -1; // can’t count children of no node!
-	if (isLeaf(p)) return 0; // leaves have no child nodes
-	if (p->leftChild != nullptr && p->rightChild != nullptr) return 2; // 2 children
-	if (p->leftChild != nullptr && p->rightChild == nullptr) return 1; // 1 (l child)
-	if (p->leftChild == nullptr && p->rightChild != nullptr) return 1; // 1 (r child)
+int BST::getChildCount(node* p)
+{
+	// This helper method returns the amount of children a node has.
+	// This method was taken from Dr. Thomas's lab PDF.
+	//
+	if (p == nullptr)
+	{
+		return -1; // can’t count children of no node!
+	}
+
+	if (isLeaf(p)) {
+		return 0; // leaves have no child nodes
+	}
+
+	if (p->leftChild != nullptr && p->rightChild != nullptr) {
+		return 2; // 2 children
+	}
+
+	if (p->leftChild != nullptr && p->rightChild == nullptr) {
+		return 1; // 1 (left child)
+	}
+
+	if (p->leftChild == nullptr && p->rightChild != nullptr) {
+		return 1; // 1 (right child)
+	}
+
 	// it should not be possible to get here
-	cout << "Internal error in getChildCount\n"; // practice defensive
-	exit(1);                                     // programming!
+	cout << "Internal error in getChildCount\n"; // Defensive programming, something awful has happened!
+	exit(1);                                     // We exit because we are not sure what to do at this point!
 }
 
-bool BST::isLeftChild(node* p) { return p == p->parent->leftChild; }
+bool BST::isLeftChild(node* p)
+{
+	// This helper method simply checks if a node is its parent's left child.
+	// This assumes that the node has a parent!
+	// This method was taken from Dr. Thomas's lab PDF.
+	//
+	return p == p->parent->leftChild;
+}
 
-bool BST::isRightChild(node* p) { return p == p->parent->rightChild; }
+bool BST::isRightChild(node* p)
+{
+	// This helper method simply checks if a node is its parent's left child.
+	// This assumes that the node has a parent!
+	// This method was taken from Dr. Thomas's lab PDF.
+	//
+	return p == p->parent->rightChild;
+}
