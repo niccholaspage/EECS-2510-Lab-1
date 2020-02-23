@@ -508,37 +508,44 @@ void BST::max(node* p)
 
 void BST::prev(const string word)
 {
-	node* x = findNode(word);
+	// This method prints out the previous node's word for a node containing the
+	// given word. If no node has the given word, a newline is printed.
+	//
+	node* x = findNode(word); // Get a pointer to the node containing the word we are getting the predecessor of
 
-	if (x == nullptr)
+	if (x == nullptr) // If no node was found,
 	{
-		cout << endl;
+		cout << endl; // we just print out a newline.
 
-		return;
+		return;	// We have nothing else to do since we didn't find a node, so we just return.
 	}
 
-	if (x->leftChild != nullptr)
+	if (x->leftChild != nullptr) // If the node's left child is not null,
 	{
+		// we know that the node's predecessor is just the max of its child node,
+		// so we just call the max method which will print the word associated with
+		// the predecessor node.
+		//
 		max(x->leftChild);
 
-		return;
+		return; // We have found and printed the predecessor, so we are done and just return.
 	}
 
-	node* y = x->parent;
+	node* y = x->parent; // We get the parent of node x
 
-	while (y != nullptr && x == y->leftChild)
+	while (y != nullptr && x == y->leftChild) // While node y isn't null and x is still y's left child,
 	{
-		x = y;
-		y = y->parent;
+		x = y;		   // we set x to node y,
+		y = y->parent; // and we update y to be old y's parent.
 	}
 
-	if (y != nullptr)
+	if (y != nullptr) // If node y is not null,
 	{
-		cout << y->word << endl;
+		cout << y->word << endl; // we have the predecessor of node x, so we print out its word.
 	}
-	else
+	else // otherwise,
 	{
-		cout << endl;
+		cout << endl; // we don't have a predecessor, so we just print out a newline.
 	}
 }
 
