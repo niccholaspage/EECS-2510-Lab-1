@@ -181,28 +181,35 @@ void BST::deleteNode(node* p)
 
 void BST::insert(const string word)
 {
-	node* p = root;
-	node* q = nullptr;
+	// To a add a word to the tree, we need to traverse through the nodes of the tree,
+	// looking for the word. If we find it, we increment the node's counter and exit;
+	// otherwise, we continue traversing through the node's children, going through the
+	// left child if the word is less than the node's word that we are traversing, or
+	// the right child if the word is greater than the node's word we are traversing.
+	// If it is not found, we just make a new node and attach it to the tree.
+	//
+	node* p = root; // traverses the tree, starting at the root node
+	node* q = nullptr; // lags one step behind p; used to update q's child to a new node if it was made.
 
-	while (p != nullptr)
+	while (p != nullptr) // as long as there are more nodes:
 	{
-		q = p;
+		q = p; // Set our lagging pointer to q
 
-		if (word < p->word)
+		if (word < p->word) // Check if the word we are inserting is less than p's word
 		{
-			p = p->leftChild;
+			p = p->leftChild; // If so, p gets set to old p's left child, so that we can check it.
 		}
-		else if (word > p->word)
+		else if (word > p->word) // Otherwise, check if our word is greater than p's word.
 		{
-			p = p->rightChild;
+			p = p->rightChild; // If so, p gets set to old p's right child, so that we can check it.
 		}
-		else
+		else // Since the word was not less than or greater than p's word, there is only one case remaining - it equals p's word
 		{
-			p->count++;
+			p->count++; // Since a node with the word already exists, we just increment the node's count by one.
 
-			printNode(p);
+			printNode(p); // We call this helper method to print out the word and count of node p
 
-			return;
+			return; // Since we don't need to insert any new nodes into the tree, we can just stop here. We are done!
 		}
 	}
 
