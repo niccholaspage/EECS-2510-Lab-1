@@ -551,40 +551,47 @@ void BST::prev(const string word)
 
 BST::node* BST::nextNode(node* p)
 {
-	if (p == nullptr)
+	// This method returns the next node of the given node.
+	// If the given node is a null pointer, or the given node
+	// does not have a successor, we just return nullptr.
+	//
+	if (p == nullptr)	// If p is a null pointer,
 	{
-		return nullptr;
+		return nullptr; // we return nullptr.
 	}
 
-	if (p->rightChild != nullptr)
+	if (p->rightChild != nullptr)		// If the given node has a right child,
 	{
-		return minNode(p->rightChild);
+		return minNode(p->rightChild);  // then the next node is the minimum node of node p's right child.
 	}
 
-	node* q = p->parent;
+	node* q = p->parent; // We now get node p's parent.
 
-	while (q != nullptr && p == q->rightChild)
+	while (q != nullptr && p == q->rightChild) // While q is not null and node p is q's right child,
 	{
-		p = q;
-		q = q->parent;
+		p = q;		   // we set p to q,
+		q = q->parent; // and we set q to old q's parent.
 	}
 
-	return q;
+	return q; // We return node q, which is the successor of node p, or null if no successor was found.
 }
 
 void BST::next(const string word)
 {
-	node* x = findNode(word);
+	// This method prints out the next node's word for a node containing the
+	// given word. If no node has the given word, a newline is printed.
+	//
+	node* x = findNode(word); // Get a pointer to the node containing the word we are getting the successor of
 
-	node* next = nextNode(x);
+	node* next = nextNode(x); // Gets a pointer to the next node of the node x
 
-	if (next != nullptr)
+	if (next != nullptr)			// If next is not nullptr, then we have a next node,
 	{
-		cout << next->word << endl;
+		cout << next->word << endl; // so we print out next node's word!
 	}
-	else
+	else // otherwise,
 	{
-		cout << endl;
+		cout << endl; // we just print out a newline.
 	}
 }
 
