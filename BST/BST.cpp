@@ -16,7 +16,7 @@ BST::~BST()
 	//
 	if (root == nullptr) // Check if the root node is null
 	{
-		return; 
+		return; // Return because there are no nodes to delete!
 	}
 
 
