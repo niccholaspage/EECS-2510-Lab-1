@@ -97,7 +97,7 @@ void BST::deleteNode(node* p)
 			}
 		}
 
-		return; // By the end of this case, we have deleted the pointer, so we can just return here.
+		return; // By the end of this case, we have deleted the node, so we can just return here.
 	}
 
 	if (amountOfChildren == 1)      // If the node has one child,
@@ -117,65 +117,66 @@ void BST::deleteNode(node* p)
 
 			delete p; // Delete the node, as it now has been removed from the tree
 		}
-		else
+		else              // Since the node is not the root, we have a bit more complicated of a process
 		{
-			node* parent = p->parent;
+			node* parent = p->parent; // get the parent of the node
 
-			if (isLeftChild(p))
+			if (isLeftChild(p)) // if the node is a left child of its parent,
 			{
-				parent->leftChild = child;
+				parent->leftChild = child; // Since we are deleting node p, we must fix the parent's left child by making it p's child
 
-				child->parent = parent;
+				child->parent = parent; // Now, we update the parent of the child node to point to the parent
 
-				delete p;
+				delete p; // Delete the node, as it has now been removed from the tree
 			}
-			else if (isRightChild(p))
+			else if (isRightChild(p)) // if the node is a right child of its parent,
 			{
-				parent->rightChild = child;
+				parent->rightChild = child; // Since we are deleting node p, we must fix the parent's right child by making it p's child
 
-				child->parent = parent;
+				child->parent = parent; // Now, we update the parent of the child node to point to the parent
 
-				delete p;
+				delete p; // Delete the node, as it has now been removed from the tree
 			}
 			else
 			{
-				cout << "ERROR in deleteNode";
+				// It should not be possible to get here, as node p should have been
+				// either a left child or right child since it is not the root node.
+				cout << "Internal error in deleteNode\n"; // Print out that something awful has happened during deletion.
 
-				exit(1);
+				exit(1); // Exit the program - oops!
 			}
 		}
 
-		return;
+		return; // By the end of this case, we have deleted the node, so we can just return.
 	}
 
-	// Two children
-	node* y = nextNode(p);
+	// We will only get to this point if node p has two children, as the other cases have already been taken care of
+	node* y = nextNode(p); // Get the successor of node p
 
-	// Perform "copy" of y's contents into p
-	p->word = y->word;
+	// Perform "copy" of y's contents into p.
+	p->word = y->word; // We set p's word to y's word
+	p->count = y->count; // We set p's count to y's count
 
-	p->count = y->count;
-
-	if (y == p->rightChild)
+	if (y == p->rightChild) // If y (p's successor) is p's right child,
 	{
-		p->rightChild = y->rightChild;
+		p->rightChild = y->rightChild; // Set p's right child to y's right child
 
-		if (y->rightChild != nullptr)
+		if (y->rightChild != nullptr)    // If y has a right child,
 		{
-			y->rightChild->parent = p;
+			y->rightChild->parent = p;   // we need to fix its parent by setting it to node p.
 		}
 	}
-	else
+	else // In this case, y is further down the tree since it is not p's direct right child.
 	{
-		p->rightChild->leftChild = y->rightChild;
+		p->rightChild->leftChild = y->rightChild;  // Set p's right child's left child to y's right child
 
-		if (y->rightChild != nullptr)
+		if (y->rightChild != nullptr)			   // If y's right child was not null,
 		{
-			y->rightChild->parent = p->rightChild;
+			y->rightChild->parent = p->rightChild; // We need to fix its parent by setting it to p's right child.
 		}
 	}
 
-	delete y;
+	delete y; // Now we delete node y, as it's contents have been copied into p.
 }
 
 void BST::insert(const string word)
