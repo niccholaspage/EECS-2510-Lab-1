@@ -8,7 +8,9 @@
 // commands that can manipulate the Binary Search Tree and print information about it.
 //
 // Author:    Nicholas Nassar, University of Toledo
-// Date:      Feb 18, 2020
+// Class:     EECS 2510-001 Non-Linear Data Structures, Spring 2020
+// Instructor: Dr.Thomas
+// Date:      Feb 23, 2020
 // Copyright: Copyright 2020 by Nicholas Nassar. All rights reserved.
 
 #include <iostream>
