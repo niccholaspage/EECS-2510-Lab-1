@@ -331,17 +331,18 @@ void BST::parent(const string word)
 {
 	// This method prints the parent node of a node with the given word.
 	// If a node with the given word isn't found, it just prints a
-	// newline.
+	// newline. It also prints a newline of the node does not have
+	// a parent.
 	//
 	node* p = findNode(word); // Get a pointer to the node containing the given word
 
-	if (p == nullptr || p->parent == nullptr)
+	if (p == nullptr || p->parent == nullptr) // If no node was found, or the node found does not have a parent,
 	{
-		cout << endl;
+		cout << endl; // we just print a newline.
 	}
-	else
+	else // otherwise, we found the node and it has a parent,
 	{
-		cout << p->parent->word << endl;
+		cout << p->parent->word << endl; // so we print out the node's parent word.
 	}
 }
 
