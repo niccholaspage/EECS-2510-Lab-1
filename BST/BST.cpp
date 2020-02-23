@@ -348,18 +348,27 @@ void BST::parent(const string word)
 
 void BST::child(const string word)
 {
-	node* p = findNode(word);
+	// This method prints the children nodes of a node with the given word.
+	// If no node with the given word is found, a newline is printed. Otherwise,
+	// the node's left and right child are printed, with a comma separating them.
+	// If the node doesn't have a left or right child, NULL is printed in its
+	// place.
+	//
+	node* p = findNode(word); // Get a pointer to the node containing the given word
 
-	if (p == nullptr)
+	if (p == nullptr) // If p is nullptr, then we were not able to find a node with the given word,
 	{
-		cout << endl;
+		cout << endl; // so we just print a newline.
 	}
-	else
+	else // otherwise,
 	{
+		// we get the left child word, or NULL if there is no left child
 		string leftChildWord = p->leftChild == nullptr ? "NULL" : p->leftChild->word;
+
+		// we also get the right child word, or NULL if there is no right child
 		string rightChildWord = p->rightChild == nullptr ? "NULL" : p->rightChild->word;
 
-		cout << leftChildWord << ", " << rightChildWord << endl;
+		cout << leftChildWord << ", " << rightChildWord << endl; // We now print the left and right child words with a comma separated between them
 	}
 }
 
