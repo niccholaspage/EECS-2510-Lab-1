@@ -4,7 +4,7 @@
 //
 // This class implements a binary search tree, filled with nodes as declared in BST.h.  
 // Each node contains a word, the number of times the word has appeared, and pointers to 
-// the left and right child of the node.
+// the left and right child of the node, as well as the parent of the node.
 //
 // Author:     Nicholas Nassar, University of Toledo
 // Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020
