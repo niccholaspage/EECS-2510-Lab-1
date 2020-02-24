@@ -75,7 +75,8 @@ void BST::deleteNode(node* p)
 	// we must use different methods to delete the node
 	// and properly adjust the tree.
 	//
-	int amountOfChildren = getChildCount(p); // Set the variable to the amount of children for the given node so we can handle each delete case
+	// Set the variable to the amount of children for the given node so we can handle each delete case
+	int amountOfChildren = getChildCount(p);
 
 	if (amountOfChildren == 0) // If the node has no children,
 	{
@@ -123,15 +124,15 @@ void BST::deleteNode(node* p)
 			child = p->rightChild; // then the one child has to be the right child.
 		}
 
-		if (isRoot(p))    // If the given node is null,
+		if (isRoot(p))    // If the node we want to delete is the root,
 		{
-			root = child; // Set the tree's root to the child.
+			root = child; // Set the tree's root to the child of the node.
 
 			child->parent = nullptr; // Since the child node is now the root, we set its parent to null
 
 			delete p; // Delete the node, as it now has been removed from the tree
 		}
-		else              // Since the node is not the root, we have a bit more complicated of a process
+		else              // Since the node is not the root, we have a bit more complicated of a process to go through.
 		{
 			node* parent = p->parent; // get the parent of the node
 
