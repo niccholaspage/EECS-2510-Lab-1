@@ -7,11 +7,11 @@
 // be retrieved. Children and parents of nodes can also be found. This program takes
 // commands that can manipulate the Binary Search Tree and print information about it.
 //
-// Author:    Nicholas Nassar, University of Toledo
-// Class:     EECS 2510-001 Non-Linear Data Structures, Spring 2020
+// Author:     Nicholas Nassar, University of Toledo
+// Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020
 // Instructor: Dr.Thomas
-// Date:      Feb 23, 2020
-// Copyright: Copyright 2020 by Nicholas Nassar. All rights reserved.
+// Date:       Feb 23, 2020
+// Copyright:  Copyright 2020 by Nicholas Nassar. All rights reserved.
 
 #include <iostream>
 #include "BST.h"
