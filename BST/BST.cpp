@@ -183,11 +183,13 @@ void BST::deleteNode(node* p)
 	}
 	else // In this case, y is further down the tree since it is not p's direct right child.
 	{
-		p->rightChild->leftChild = y->rightChild;  // Set p's right child's left child to y's right child
+		node* yParent = y->parent; // We need to get y's parent so we can fix its left child
+
+		yParent->leftChild = y->rightChild;  // Set y's left child to y's right child
 
 		if (y->rightChild != nullptr)			   // If y's right child was not null,
 		{
-			y->rightChild->parent = p->rightChild; // We need to fix its parent by setting it to p's right child.
+			y->rightChild->parent = yParent; // We need to fix its parent by setting it to y's parent.
 		}
 	}
 
